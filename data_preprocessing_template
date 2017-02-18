@@ -24,7 +24,6 @@ dataset = pd.read_csv('Data.csv')
 
 ##distingiush independent variable matrix
 x = dataset.iloc[:,:-1].values
-
 ##distinguish dependent variable matrix
 y = dataset.iloc[:,3].values
 
@@ -53,6 +52,7 @@ sc_x = StandardScaler() #object
 x_train= sc_x.fit_transform(x_train) #fit to object
 x_test= sc_x.transform(x_test)"""
 
+                      
 
 
 

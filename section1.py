@@ -56,6 +56,39 @@ labelencoder_y = LabelEncoder()
 y = labelencoder_y.fit_transform(y)
 
 ##Splitting the data into training set and test set
+#from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+
+
+##Feature Scaling
+##age and income need to be on the same scale, because
+##a lot of ML models are based on the euclidean distances 
+##the squared root of the sum of the squared coordinates
+##if the x coordinate is age, and y is salary, the euclidian distance will be
+##dominated by salary
+##so need to put the two on the same scale
+##if not, the ML will basically be that the smaller values do not exist, and will 
+##be dominated by the larger number
+##two ways to feature scale:
+    ##1. Standardization:
+        #xstand = (x-meanx)/(sd(x)))
+    ##2. Normalization:
+        #xnorm = (x-minx)/(max(x)-min(x))
+        
+from sklearn.preprocessing import StandardScaler
+sc_x = StandardScaler() #object
+x_train= sc_x.fit_transform(x_train) #fit to object
+x_test= sc_x.transform(x_test)
+
+
+
+
+
+
+
+
+
 
 
 
