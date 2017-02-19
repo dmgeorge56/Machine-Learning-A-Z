@@ -69,11 +69,23 @@ regressor.fit(x_train, y_train) ##fit the machine to the training data
 3.
 4.
 """
-y_pred = regressor.predict(x_test) 
-
+y_pred = regressor.predict(x_test)
                       
+##visualising the traing set results
+##plot observation points and regression line
+plt.scatter(x_train, y_train, color='red')
+plt.plot(x_train, regressor.predict(x_train), color='blue')
+plt.title('Salary vs Experience (training set)')
+plt.xlabel('Years of Experience')
+plt.ylabel('Salary')
+plt.show()
 
-
+plt.scatter(x_test, y_test, color='red')
+plt.plot(x_train, regressor.predict(x_train), color='blue')
+plt.title('Salary vs Experience (test set)')
+plt.xlabel('Years of Experience')
+plt.ylabel('Salary')
+plt.show()
 
 
 
