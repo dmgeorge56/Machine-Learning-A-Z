@@ -56,8 +56,20 @@ sc_x = StandardScaler() #object
 x_train= sc_x.fit_transform(x_train) #fit to object
 x_test= sc_x.transform(x_test)"""
 
+##fitting simple linear regression to the training set
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression() ##make a machine to learn on the training set
+regressor.fit(x_train, y_train) ##fit the machine to the training data
+##its learning experience can then predict y for the test data
 
-
+##predict the test set results
+"""
+1. create vector of predicted salary values
+2.
+3.
+4.
+"""
+y_pred = regressor.predict(x_test) 
 
                       
 
