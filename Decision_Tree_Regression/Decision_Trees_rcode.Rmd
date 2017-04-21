@@ -13,7 +13,7 @@ dataset = read.csv("Position_Salaries.csv")
 dataset = dataset[2:3]
 
 ```
-r
+
 ##splitting the dataset into training set and test set
 ```{r}
 
@@ -33,6 +33,11 @@ r
 
 ```
 
+##import necessary libraries
+```{r}
+library(rpart)
+```
+
 ##Fitting decision tree regresssion model to the dataset
 ```{r}
 ##create your decision tree regressor here, may look like this:
@@ -42,30 +47,19 @@ r
 # regressor = lm(formula = Salary ~ .,
 #               data = dataset)
 
+regressor = rpart(formula = Salary ~ .
+                  , data = dataset
+                  , control = rpart.control(minsplit=1))
+
 ```
 
 ##Predicting a new result with decision tree regression
 ```{r}
 
-y_pred = predict(regressor, data.frame(Level=6.5,
-                                       Level2=6.5^2,
-                                       Level3=6.5^3,
-                                       Level4=6.5^4))
-
-```
-
-##Visualizing the decision tree regression results
-```{r}
-
-library(ggplot2)
-ggplot() +
-  geom_point(aes(x = dataset$Level, y = dataset$Salary),
-             colour ='red') +
-  geom_line(aes(dataset$Level, y = predict(regressor, newdata = dataset)),
-            colour = 'blue') +
-  ggtitle('Truth or Bluff (Decision Tree Regression Model)') +
-  xlab('Level') +
-  ylab('Salary')
+y_pred = predict(regressor, data.frame(Level=6.5))
+                                   # , Level2=6.5^2,
+                                   # , Level3=6.5^3,
+                                   # , Level4=6.5^4))
 
 ```
 
@@ -73,13 +67,13 @@ ggplot() +
 ```{r}
 
 library(ggplot2)
-x_grid = seq(min(dataset$Level),max(dataset$Level),0.1)
+x_grid = seq(min(dataset$Level),max(dataset$Level),0.01)
 ggplot() +
   geom_point(aes(x = dataset$Level, y = dataset$Salary),
              colour ='red') +
   geom_line(aes(x_grid, y = predict(regressor, newdata = data.frame(Level = x_grid))),
             colour = 'blue') +
-  ggtitle('Truth or Bluff (Decision Tree Regression Model)') +
+  ggtitle('Truth or Bluff (Decision Tree Regression)') +
   xlab('Level') +
   ylab('Salary')
 
