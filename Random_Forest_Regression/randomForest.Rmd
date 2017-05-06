@@ -47,7 +47,7 @@ library(randomForest)
 set.seed(1234)
 regressor = randomForest(x = dataset[1]
                        , y = dataset$Salary
-                       , ntree = 75)
+                       , ntree = 500)
 
 ##dataset[1] gives a sub set dataframe
 ##dataset$Salary gives a vector
